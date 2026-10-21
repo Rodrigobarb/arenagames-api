@@ -1,56 +1,30 @@
 -- =====================================================
 --  Arena Games - Script do banco de dados (PostgreSQL)
---  Sistema de gerenciamento de campeonatos de e-sports
 -- =====================================================
 
--- Jogos (modalidades) disputados nos campeonatos
+-- Jogos (modalidades)
 create table if not exists jogos (
    id serial not null primary key,
-   titulo varchar(60) not null,
-   genero varchar(40) not null,
-   desenvolvedora varchar(60),
-   jogadores_por_time integer not null,
-   check (jogadores_por_time > 0)
+   nome varchar(50) not null,
+   genero varchar(40) not null
 );
 
--- Equipes (times) que participam dos campeonatos
+-- Equipes: cada equipe joga UM jogo (chave estrangeira)
 create table if not exists equipes (
    id serial not null primary key,
-   nome varchar(60) not null,
+   nome varchar(50) not null,
    sigla varchar(6) not null,
-   cidade varchar(60),
-   data_fundacao date,
-   ativa boolean not null default true
-);
-
--- Campeonatos: cada campeonato pertence a UM jogo (chave estrangeira)
-create table if not exists campeonatos (
-   id serial not null primary key,
-   nome varchar(80) not null,
-   descricao text,
-   premiacao numeric(12,2) not null default 0,
-   check (premiacao >= 0),
-   data_inicio date not null,
-   data_fim date,
-   situacao varchar(20) not null default 'Inscrições abertas',
-   check (situacao in ('Inscrições abertas', 'Em andamento', 'Finalizado')),
-   max_equipes integer not null default 8,
-   check (max_equipes >= 2),
+   cidade varchar(50),
    jogo integer not null,
    foreign key (jogo) references jogos (id)
 );
 
--- Inscrições: liga uma equipe a um campeonato (duas chaves estrangeiras)
-create table if not exists inscricoes (
+-- Jogadores: cada jogador pertence a UMA equipe (chave estrangeira)
+create table if not exists jogadores (
    id serial not null primary key,
-   campeonato integer not null,
+   nickname varchar(30) not null,
+   nome varchar(50) not null,
+   funcao varchar(30),
    equipe integer not null,
-   data_inscricao date not null default current_date,
-   pontos integer not null default 0,
-   check (pontos >= 0),
-   colocacao integer,
-   check (colocacao is null or colocacao > 0),
-   foreign key (campeonato) references campeonatos (id),
-   foreign key (equipe) references equipes (id),
-   unique (campeonato, equipe)
+   foreign key (equipe) references equipes (id)
 );

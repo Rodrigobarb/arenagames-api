@@ -2,14 +2,12 @@ const { Router } = require('express');
 
 const { rotasJogos } = require('./rotasJogos');
 const { rotasEquipes } = require('./rotasEquipes');
-const { rotasCampeonatos } = require('./rotasCampeonatos');
-const { rotasInscricoes } = require('./rotasInscricoes');
+const { rotasJogadores } = require('./rotasJogadores');
 
 const rotas = new Router();
 
 rotas.use(rotasJogos);
 rotas.use(rotasEquipes);
-rotas.use(rotasCampeonatos);
-rotas.use(rotasInscricoes);
+rotas.use(rotasJogadores);
 
 module.exports = rotas;

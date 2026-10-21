@@ -1,18 +1,17 @@
 # Arena Games - API (Backend)
 
-API REST do **Arena Games**, sistema de gerenciamento de campeonatos de e-sports.
+API REST do **Arena Games**, sistema simples para cadastrar jogos, equipes e jogadores de e-sports.
 Trabalho prático da disciplina de Programação para Web - IFSul Passo Fundo.
 
 ## Tecnologias
 Node.js, Express, PostgreSQL (biblioteca `pg`) e CORS.
 
 ## Banco de dados
-| Tabela | Descrição | Chave estrangeira |
+| Tabela | Campos | Chave estrangeira |
 |---|---|---|
-| `jogos` | modalidades (LoL, CS2, Valorant, Rocket League...) | - |
-| `equipes` | times participantes | - |
-| `campeonatos` | torneios | `jogo` → `jogos.id` |
-| `inscricoes` | equipe inscrita em um campeonato, com pontos e colocação | `campeonato` → `campeonatos.id`, `equipe` → `equipes.id` |
+| `jogos` | id, nome, genero | - |
+| `equipes` | id, nome, sigla, cidade, jogo | `jogo` → `jogos.id` |
+| `jogadores` | id, nickname, nome, funcao, equipe | `equipe` → `equipes.id` |
 
 O script está em `database/script_banco.sql`. Ao iniciar, a API cria as tabelas (se não existirem)
 e insere dados de exemplo quando o banco está vazio (`database/inicializaBanco.js`).
@@ -26,7 +25,7 @@ e insere dados de exemplo quando o banco está vazio (`database/inicializaBanco.
 | PUT | `/jogo` | altera (id no corpo) |
 | DELETE | `/jogo/:id` | remove |
 
-O mesmo padrão vale para `/equipe`, `/campeonato` e `/inscricao`.
+O mesmo padrão vale para `/equipe` e `/jogador`.
 
 ## Como rodar localmente
 Crie o banco `arenagames` no PostgreSQL e execute:

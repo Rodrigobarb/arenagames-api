@@ -5,12 +5,12 @@ curl -X GET http://localhost:3002/jogo
 curl -X GET http://localhost:3002/jogo/1
 
 - CADASTRAR JOGO
-curl -X POST -H "Content-Type: application/json" -d "{\"titulo\":\"Dota 2\",\"genero\":\"MOBA\",\"desenvolvedora\":\"Valve\",\"jogadores_por_time\":5}" http://localhost:3002/jogo
+curl -X POST -H "Content-Type: application/json" -d "{\"nome\":\"Dota 2\",\"genero\":\"MOBA\"}" http://localhost:3002/jogo
 
 - ALTERAR JOGO
-curl -X PUT -H "Content-Type: application/json" -d "{\"id\":6,\"titulo\":\"Dota 2\",\"genero\":\"MOBA\",\"desenvolvedora\":\"Valve Corporation\",\"jogadores_por_time\":5}" http://localhost:3002/jogo
+curl -X PUT -H "Content-Type: application/json" -d "{\"id\":5,\"nome\":\"Dota 2\",\"genero\":\"MOBA / Estratégia\"}" http://localhost:3002/jogo
 
 - REMOVER JOGO
-curl -X DELETE http://localhost:3002/jogo/6
+curl -X DELETE http://localhost:3002/jogo/5
 
-As mesmas operações existem para /equipe, /campeonato e /inscricao
+As mesmas operações existem para /equipe e /jogador

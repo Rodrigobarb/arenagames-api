@@ -1,11 +1,11 @@
 class Equipe {
-    constructor(id, nome, sigla, cidade, data_fundacao, ativa) {
+    constructor(id, nome, sigla, cidade, jogo, jogo_nome) {
         this.id = id;
         this.nome = nome;
         this.sigla = sigla;
         this.cidade = cidade;
-        this.data_fundacao = data_fundacao;
-        this.ativa = ativa;
+        this.jogo = jogo;
+        this.jogo_nome = jogo_nome;
     }
 }
 

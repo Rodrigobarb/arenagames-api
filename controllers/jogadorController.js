@@ -1,18 +1,18 @@
-const { getCampeonatosDB, addCampeonatoDB, updateCampeonatoDB, deleteCampeonatoDB, getCampeonatoPorIdDB } = require('../usecases/campeonatoUseCases')
+const { getJogadoresDB, addJogadorDB, updateJogadorDB, deleteJogadorDB, getJogadorPorIdDB } = require('../usecases/jogadorUseCases')
 
-const getCampeonatos = async (request, response) => {
-    await getCampeonatosDB()
+const getJogadores = async (request, response) => {
+    await getJogadoresDB()
         .then(data => response.status(200).json(data))
         .catch(err => response.status(400).json({
             status: 'error',
-            message: 'Erro ao consultar os campeonatos: ' + err
+            message: 'Erro ao consultar: ' + err
         }));
 }
 
-const addCampeonato = async (request, response) => {
-    await addCampeonatoDB(request.body)
+const addJogador = async (request, response) => {
+    await addJogadorDB(request.body)
         .then(data => response.status(200).json({
-            status: "success", message: "Campeonato criado",
+            status: "success", message: "Jogador criado",
             objeto: data
         }))
         .catch(err => response.status(400).json({
@@ -21,10 +21,10 @@ const addCampeonato = async (request, response) => {
         }));
 }
 
-const updateCampeonato = async (request, response) => {
-    await updateCampeonatoDB(request.body)
+const updateJogador = async (request, response) => {
+    await updateJogadorDB(request.body)
         .then(data => response.status(200).json({
-            status: "success", message: "Campeonato alterado",
+            status: "success", message: "Jogador alterado",
             objeto: data
         }))
         .catch(err => response.status(400).json({
@@ -33,8 +33,8 @@ const updateCampeonato = async (request, response) => {
         }));
 }
 
-const deleteCampeonato = async (request, response) => {
-    await deleteCampeonatoDB(parseInt(request.params.id))
+const deleteJogador = async (request, response) => {
+    await deleteJogadorDB(parseInt(request.params.id))
         .then(data => response.status(200).json({
             status: "success", message: data
         }))
@@ -44,8 +44,8 @@ const deleteCampeonato = async (request, response) => {
         }));
 }
 
-const getCampeonatoPorId = async (request, response) => {
-    await getCampeonatoPorIdDB(parseInt(request.params.id))
+const getJogadorPorId = async (request, response) => {
+    await getJogadorPorIdDB(parseInt(request.params.id))
         .then(data => response.status(200).json(data))
         .catch(err => response.status(400).json({
             status: 'error',
@@ -54,5 +54,5 @@ const getCampeonatoPorId = async (request, response) => {
 }
 
 module.exports = {
-    getCampeonatos, addCampeonato, updateCampeonato, deleteCampeonato, getCampeonatoPorId
+    getJogadores, addJogador, updateJogador, deleteJogador, getJogadorPorId
 }

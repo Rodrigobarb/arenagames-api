@@ -13,8 +13,8 @@ app.use(cors());
 app.get('/', (request, response) => {
     response.status(200).json({
         api: 'Arena Games API',
-        descricao: 'Sistema de gerenciamento de campeonatos de e-sports',
-        rotas: ['/jogo', '/equipe', '/campeonato', '/inscricao']
+        descricao: 'Cadastro de jogos, equipes e jogadores de e-sports',
+        rotas: ['/jogo', '/equipe', '/jogador']
     });
 });
 
