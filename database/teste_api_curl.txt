@@ -1,0 +1,16 @@
+- LISTAR JOGOS
+curl -X GET http://localhost:3002/jogo
+
+- BUSCAR JOGO POR ID
+curl -X GET http://localhost:3002/jogo/1
+
+- CADASTRAR JOGO
+curl -X POST -H "Content-Type: application/json" -d "{\"titulo\":\"Dota 2\",\"genero\":\"MOBA\",\"desenvolvedora\":\"Valve\",\"jogadores_por_time\":5}" http://localhost:3002/jogo
+
+- ALTERAR JOGO
+curl -X PUT -H "Content-Type: application/json" -d "{\"id\":6,\"titulo\":\"Dota 2\",\"genero\":\"MOBA\",\"desenvolvedora\":\"Valve Corporation\",\"jogadores_por_time\":5}" http://localhost:3002/jogo
+
+- REMOVER JOGO
+curl -X DELETE http://localhost:3002/jogo/6
+
+As mesmas operações existem para /equipe, /campeonato e /inscricao
