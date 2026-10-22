@@ -26,6 +26,9 @@ const addEquipeDB = async (body) => {
         const equipe = results.rows[0];
         return new Equipe(equipe.id, equipe.nome, equipe.sigla, equipe.cidade, equipe.jogo, "");
     } catch (err) {
+        if (err.code === '23503') {
+            throw "O jogo selecionado não existe.";
+        }
         throw "Erro ao inserir a equipe: " + err;
     }
 }
@@ -43,6 +46,9 @@ const updateEquipeDB = async (body) => {
         const equipe = results.rows[0];
         return new Equipe(equipe.id, equipe.nome, equipe.sigla, equipe.cidade, equipe.jogo, "");
     } catch (err) {
+        if (err.code === '23503') {
+            throw "O jogo selecionado não existe.";
+        }
         throw "Erro ao alterar a equipe: " + err;
     }
 }
@@ -56,6 +62,10 @@ const deleteEquipeDB = async (id) => {
             return "Equipe removida com sucesso";
         }
     } catch (err) {
+        // 23503 = erro de chave estrangeira (a equipe tem jogadores)
+        if (err.code === '23503') {
+            throw "Não é possível remover esta equipe, pois existem jogadores cadastrados nela.";
+        }
         throw "Erro ao remover a equipe: " + err;
     }
 }

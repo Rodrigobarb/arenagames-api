@@ -49,6 +49,10 @@ const deleteJogoDB = async (id) => {
             return "Jogo removido com sucesso";
         }
     } catch (err) {
+        // 23503 = erro de chave estrangeira (o jogo tem equipes ligadas a ele)
+        if (err.code === '23503') {
+            throw "Não é possível remover este jogo, pois existem equipes cadastradas nele.";
+        }
         throw "Erro ao remover o jogo: " + err;
     }
 }

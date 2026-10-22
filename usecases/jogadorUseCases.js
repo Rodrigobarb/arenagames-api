@@ -26,6 +26,9 @@ const addJogadorDB = async (body) => {
         const jogador = results.rows[0];
         return new Jogador(jogador.id, jogador.nickname, jogador.nome, jogador.funcao, jogador.equipe, "");
     } catch (err) {
+        if (err.code === '23503') {
+            throw "A equipe selecionada não existe.";
+        }
         throw "Erro ao inserir o jogador: " + err;
     }
 }
@@ -43,6 +46,9 @@ const updateJogadorDB = async (body) => {
         const jogador = results.rows[0];
         return new Jogador(jogador.id, jogador.nickname, jogador.nome, jogador.funcao, jogador.equipe, "");
     } catch (err) {
+        if (err.code === '23503') {
+            throw "A equipe selecionada não existe.";
+        }
         throw "Erro ao alterar o jogador: " + err;
     }
 }
